@@ -29,7 +29,7 @@
       "@repositories/*": ["src/repositories/*"],
       "@services/*": ["src/services/*"],
       "@store/*": ["src/store/*"],
-      "@types/*": ["src/types/*"]
+      "@type/*": ["src/type/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
