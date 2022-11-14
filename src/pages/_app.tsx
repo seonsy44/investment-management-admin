@@ -7,11 +7,14 @@ import { PersistGate } from 'redux-persist/integration/react';
 import '@styles/globals.css';
 import GlobalStyle from '@styles/GlobalStyles';
 import { colors } from '@styles/theme';
-import { store, wrapper, persistor } from '@store/index';
+import { wrapper, persistor } from '@store/index';
 
 const queryClient = new QueryClient();
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, ...rest }: AppProps) {
+  const { store, props } = wrapper.useWrappedStore(rest);
+  const { pageProps } = props;
+
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
@@ -26,4 +29,4 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default wrapper.withRedux(App);
+export default App;
