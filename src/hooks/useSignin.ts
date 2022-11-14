@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { useDispatch } from 'react-redux';
+
+import AuthService from '@services/AuthService';
+import LocalToken from '@repositories/LocalTokenRepository';
+import { login } from '@store/userSlice';
 
 function useSignin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
+  const { mutate } = useMutation((data: { email: string; password: string }) => AuthService.signin(data), {
+    onSuccess: (data) => {
+      LocalToken.save(data.accessToken);
+      dispatch(login(data));
+    },
+  });
 
   const isEmailValid = !!email
     .toLowerCase()
@@ -14,8 +28,12 @@ function useSignin() {
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    mutate({ email, password });
+  };
 
-  return { email, password, isFormValid, handleEmailChange, handlePasswordChange };
+  return { email, password, isFormValid, handleEmailChange, handlePasswordChange, handleSubmit };
 }
 
 export default useSignin;
