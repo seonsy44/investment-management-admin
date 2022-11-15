@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import Footer from './Footer';
@@ -11,7 +11,12 @@ type Props = {
 };
 
 function Layout({ children }: Props) {
-  const { pathname } = useRouter();
+  const { pathname, asPath } = useRouter();
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    contentRef.current?.scrollTo(0, 0);
+  }, [asPath]);
 
   if (pathname === '/signin') return <>{children}</>;
 
@@ -19,7 +24,7 @@ function Layout({ children }: Props) {
     <Container>
       <Sider />
       <Header />
-      <Content>
+      <Content ref={contentRef}>
         <ChildrenContainer>{children}</ChildrenContainer>
         <Footer />
       </Content>

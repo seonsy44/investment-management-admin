@@ -26,14 +26,17 @@ export const accountQuerySlice = createSlice({
     setIsActive: (state, action: { payload: string }) => {
       if (action.payload === 'all') state.is_active = null;
       else state.is_active = action.payload;
+      state.page = 1;
     },
     setBrokerId: (state, action: { payload: string }) => {
       if (action.payload === 'all') state.broker_id = null;
       else state.broker_id = action.payload;
+      state.page = 1;
     },
     setStatus: (state, action: { payload: string }) => {
       if (action.payload === 'all') state.status = null;
       else state.status = action.payload;
+      state.page = 1;
     },
   },
 });
