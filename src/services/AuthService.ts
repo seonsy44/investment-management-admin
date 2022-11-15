@@ -1,10 +1,10 @@
 import { AxiosResponse } from 'axios';
 import axios from '@utils/getAxios';
-import { User, UserLogin } from '@type/user';
+import { AuthResponse, AuthLogin } from '@type/auth';
 
 const AuthService = {
-  async signin({ email, password }: UserLogin) {
-    const res = await axios({ bearer: false }).post<User, AxiosResponse<User>, UserLogin>('/login', {
+  async signin({ email, password }: AuthLogin) {
+    const res = await axios({ bearer: false }).post<AuthResponse, AxiosResponse<AuthResponse>, AuthLogin>('/login', {
       email,
       password,
     });

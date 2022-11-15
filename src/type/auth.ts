@@ -1,4 +1,4 @@
-export type User = {
+export type AuthResponse = {
   accessToken: string;
   user: {
     email: string;
@@ -6,7 +6,7 @@ export type User = {
   };
 };
 
-export type UserLogin = {
+export type AuthLogin = {
   email: string;
   password: string;
 };
