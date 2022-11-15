@@ -51,5 +51,7 @@ const Content = styled.div`
 `;
 
 const ChildrenContainer = styled.div`
+  position: relative;
   min-height: calc(90vh - 100px);
+  padding: 20px;
 `;
