@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -9,7 +12,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:4000/:path*',
+        destination: `${SERVER_URL}/:path*`,
       },
     ];
   },
