@@ -4,7 +4,7 @@ export const colors = {
   GRAY_MEDIUM: '#F5F5F5',
   GRAY_DARK: '#B7B7B7',
   NAVY: '#041627',
-  BLUE: '#041627',
+  BLUE: '#458FF7',
   RED: '#EC5B56',
   YELLOW: '#EEB041',
 } as const;
