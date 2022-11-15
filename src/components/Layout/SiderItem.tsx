@@ -6,7 +6,7 @@ import { IconType } from 'react-icons/lib';
 import { flexBox } from '@styles/mixins';
 import useSignout from '@hooks/useSignout';
 
-type Props = { name: string; href?: string; Icon: IconType };
+type Props = { name: string; href: string | null; Icon: IconType };
 
 function SiderItem({ name, href, Icon }: Props) {
   const { pathname } = useRouter();
