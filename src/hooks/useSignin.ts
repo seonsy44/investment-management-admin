@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useMutation } from '@tanstack/react-query';
-import { useDispatch } from 'react-redux';
 
 import AuthService from '@services/AuthService';
 import LocalToken from '@repositories/LocalTokenRepository';
-import { login } from '@store/userSlice';
 import CookieToken from '@repositories/CookieTokenRepository';
 
 function useSignin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
   const router = useRouter();
 
   const { mutate } = useMutation((data: { email: string; password: string }) => AuthService.signin(data), {
     onSuccess: (data) => {
       LocalToken.save(data.accessToken);
       CookieToken.set();
-      dispatch(login(data));
       router.replace('/');
     },
   });
