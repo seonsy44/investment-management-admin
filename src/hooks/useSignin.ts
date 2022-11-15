@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { useMutation } from '@tanstack/react-query';
 
 import AuthService from '@services/AuthService';
-import LocalToken from '@repositories/LocalTokenRepository';
 import CookieToken from '@repositories/CookieTokenRepository';
 
 function useSignin() {
@@ -13,8 +12,7 @@ function useSignin() {
 
   const { mutate } = useMutation((data: { email: string; password: string }) => AuthService.signin(data), {
     onSuccess: (data) => {
-      LocalToken.save(data.accessToken);
-      CookieToken.set();
+      CookieToken.set(data.accessToken);
       router.replace('/');
     },
   });

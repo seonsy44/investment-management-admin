@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
-import LocalToken from '@repositories/LocalTokenRepository';
+import CookieToken from '@repositories/CookieTokenRepository';
 
 const DEFAULT_CONFIG = {
   baseURL: '/api',
@@ -24,7 +24,7 @@ bearerInstance.interceptors.response.use(
 const getAxios = ({ bearer }: { bearer: boolean }) => {
   if (!bearer) return instance;
 
-  bearerInstance.defaults.headers.common.Authorization = `Bearer ${LocalToken.get()}`;
+  bearerInstance.defaults.headers.common.Authorization = `Bearer ${CookieToken.get()}`;
   return bearerInstance;
 };
 
