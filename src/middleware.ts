@@ -7,4 +7,14 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect('http://localhost:3000/');
     }
   }
+
+  if (
+    request.nextUrl.pathname === '/' ||
+    request.nextUrl.pathname.startsWith('/accounts') ||
+    request.nextUrl.pathname.startsWith('/users')
+  ) {
+    if (!request.cookies.get(COOKIE_TOKEN_KEY)) {
+      return NextResponse.redirect('http://localhost:3000/signin');
+    }
+  }
 }
