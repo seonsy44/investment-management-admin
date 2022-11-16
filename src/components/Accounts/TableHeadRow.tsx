@@ -1,11 +1,9 @@
-import styled from 'styled-components';
-
-import SelectBox from '@components/UI/SelectBox';
-import { flexBox } from '@styles/mixins';
 import { accountActivity, accountStatus, brokers } from '@utils/const';
 import { getSelectOptions } from '@utils/getSelectOptions';
 import useAccountQueryDispatch from '@hooks/useAccountQueryDispatch';
 import useAccountQueryState from '@hooks/useAccountQueryState';
+import SelectBox from '@components/UI/SelectBox';
+import HeadColumn from '@components/UI/HeadColumn';
 
 function TableHeadRow() {
   const { dispatchBrokerId, dispatchStatus, dispatchActivity } = useAccountQueryDispatch();
@@ -17,31 +15,23 @@ function TableHeadRow() {
 
   return (
     <>
-      <Item>
+      <HeadColumn>
         <SelectBox options={brokerOptions} handleSelectChange={dispatchBrokerId} defaultValue={brokerId} />
-      </Item>
-      <Item>계좌번호</Item>
-      <Item>고객명</Item>
-      <Item>
+      </HeadColumn>
+      <HeadColumn>계좌번호</HeadColumn>
+      <HeadColumn>고객명</HeadColumn>
+      <HeadColumn>
         <SelectBox options={accountStatusOptions} handleSelectChange={dispatchStatus} defaultValue={status} />
-      </Item>
-      <Item>계좌명</Item>
-      <Item>평가금액</Item>
-      <Item>입금금액</Item>
-      <Item>
+      </HeadColumn>
+      <HeadColumn>계좌명</HeadColumn>
+      <HeadColumn>평가금액</HeadColumn>
+      <HeadColumn>입금금액</HeadColumn>
+      <HeadColumn>
         <SelectBox options={accountActivityOptions} handleSelectChange={dispatchActivity} defaultValue={isActive} />
-      </Item>
-      <Item>계좌개설일</Item>
+      </HeadColumn>
+      <HeadColumn>계좌개설일</HeadColumn>
     </>
   );
 }
 
 export default TableHeadRow;
-
-const Item = styled.td`
-  ${flexBox()};
-  padding: 10px 0;
-  background-color: ${({ theme }) => theme.GRAY_MEDIUM};
-  font-size: 12px;
-  font-weight: 700;
-`;

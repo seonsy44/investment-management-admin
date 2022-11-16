@@ -1,12 +1,11 @@
-import styled from 'styled-components';
+import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 
 import UserService from '@services/UserService';
-import { flexBox } from '@styles/mixins';
 import { Account } from '@type/account';
 import { accountStatus, brokers } from '@utils/const';
 import { parseDate } from '@utils/parseDate';
-import Link from 'next/link';
+import BodyColumn from '@components/UI/BodyColumn';
 
 type Props = {
   account: Account;
@@ -31,42 +30,23 @@ function TableBodyRow({
 
   return (
     <>
-      <Item>{brokers[brokerId]}</Item>
-      <ItemTextBlue>
+      <BodyColumn>{brokers[brokerId]}</BodyColumn>
+      <BodyColumn type="textBlue">
         <Link href={`/accounts/${uuid}`}>{number}</Link>
-      </ItemTextBlue>
-      <ItemTextBlue>
+      </BodyColumn>
+      <BodyColumn type="textBlue">
         <Link href={`/users/${data?.uuid}`}>
           <a>{data?.name}</a>
         </Link>
-      </ItemTextBlue>
-      <Item>{accountStatus[status]}</Item>
-      <ItemTextRight>{name}</ItemTextRight>
-      <ItemTextRight>{Number(assets).toLocaleString()}</ItemTextRight>
-      <ItemTextRight>{Number(payments).toLocaleString()}</ItemTextRight>
-      <Item>{isActive ? '활성' : '비활성'}</Item>
-      <ItemTextRight>{parseDate(createdAt)}</ItemTextRight>
+      </BodyColumn>
+      <BodyColumn>{accountStatus[status]}</BodyColumn>
+      <BodyColumn>{name}</BodyColumn>
+      <BodyColumn type="textRight">{Number(assets).toLocaleString()}</BodyColumn>
+      <BodyColumn type="textRight">{Number(payments).toLocaleString()}</BodyColumn>
+      <BodyColumn>{isActive ? '활성' : '비활성'}</BodyColumn>
+      <BodyColumn type="textRight">{parseDate(createdAt)}</BodyColumn>
     </>
   );
 }
 
 export default TableBodyRow;
-
-const Item = styled.td`
-  ${flexBox()};
-  padding: 10px;
-  background-color: white;
-  font-size: 12px;
-  border-top: none;
-`;
-
-const ItemTextRight = styled(Item)`
-  ${flexBox('row', 'flex-end')};
-`;
-
-const ItemTextBlue = styled(ItemTextRight)`
-  color: ${({ theme }) => theme.BLUE};
-  > span {
-    cursor: pointer;
-  }
-`;
