@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 
 import { Account } from '@type/account';
-import { useRouter } from 'next/router';
 
 type Props = {
   contents: Account[];

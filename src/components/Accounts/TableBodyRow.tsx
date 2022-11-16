@@ -27,7 +27,7 @@ function TableBodyRow({
     uuid,
   },
 }: Props) {
-  const { data } = useQuery(['users', userId], () => UserService.getUser({ id: userId }));
+  const { data } = useQuery(['users', userId], () => UserService.getUserById({ id: userId }));
 
   return (
     <>
@@ -36,7 +36,7 @@ function TableBodyRow({
         <Link href={`/accounts/${uuid}`}>{number}</Link>
       </ItemTextBlue>
       <ItemTextBlue>
-        <Link href={`/users/${userId}`}>
+        <Link href={`/users/${data?.uuid}`}>
           <a>{data?.name}</a>
         </Link>
       </ItemTextBlue>

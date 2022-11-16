@@ -9,9 +9,9 @@ const UserService = {
     return res.data;
   },
 
-  async getUser({ id }: { id: number }) {
-    const res = await axios({ bearer: true }).get<User, AxiosResponse<User>>(`/users/${id}`);
-    return res.data;
+  async getUserById({ id }: { id: number }) {
+    const res = await axios({ bearer: true }).get<User[], AxiosResponse<User[]>>(`/users?id=${id}`);
+    return res.data[0];
   },
 };
 
