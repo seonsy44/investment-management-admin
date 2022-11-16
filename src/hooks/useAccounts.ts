@@ -1,11 +1,14 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import useUpdateEffect from '@hooks/useUpdateEffect';
 import useAccountQueryState from '@hooks/useAccountQueryState';
+import useHeaderTitleDispatch from './useHeaderTitleDispatch';
 
-function useAccountsEffect() {
+function useAccounts() {
   const { brokerId, status, isActive, page, limit } = useAccountQueryState();
   const router = useRouter();
+  const dispatchTitle = useHeaderTitleDispatch();
 
   useUpdateEffect(() => {
     const queries = [`_page=${page}`, `_limit=${limit}`];
@@ -16,6 +19,10 @@ function useAccountsEffect() {
 
     router.push(`/accounts?${queries.join('&')}`);
   }, [brokerId, status, isActive, page, limit]);
+
+  useEffect(() => {
+    dispatchTitle('계좌 목록');
+  }, []);
 }
 
-export default useAccountsEffect;
+export default useAccounts;

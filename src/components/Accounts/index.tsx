@@ -1,5 +1,5 @@
 import { Account } from '@type/account';
-import useAccountsEffect from '@hooks/useAccountsEffect';
+import useAccounts from '@hooks/useAccounts';
 import useAccountQueryDispatch from '@hooks/useAccountQueryDispatch';
 import useAccountQueryState from '@hooks/useAccountQueryState';
 import Table from './Table';
@@ -12,7 +12,7 @@ type Props = {
 function Accounts({ accounts }: Props) {
   const { page, limit } = useAccountQueryState();
   const { dispatchPage } = useAccountQueryDispatch();
-  useAccountsEffect();
+  useAccounts();
 
   return (
     <>

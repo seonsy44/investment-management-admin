@@ -6,16 +6,18 @@ import { IconType } from 'react-icons/lib';
 import { flexBox } from '@styles/mixins';
 import useSignout from '@hooks/useSignout';
 
-type Props = { name: string; href: string | null; Icon: IconType };
+type Props = { name: string; href: (string | null)[]; Icon: IconType };
+
+const indexPageidx = 0;
 
 function SiderItem({ name, href, Icon }: Props) {
   const { pathname } = useRouter();
   const handleSignoutClick = useSignout();
 
-  if (href)
+  if (href[indexPageidx])
     return (
-      <Container isSelected={pathname === href}>
-        <Link href={href}>
+      <Container isSelected={href.includes(pathname)}>
+        <Link href={href[indexPageidx]}>
           <a>
             <Icon />
             <span>{name}</span>

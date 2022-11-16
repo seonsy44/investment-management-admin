@@ -1,17 +1,17 @@
-import { flexBox } from '@styles/mixins';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { HiOutlineMenuAlt1, HiOutlineQuestionMarkCircle, HiOutlineBell } from 'react-icons/hi';
-import { useRouter } from 'next/router';
-import { headerTitle } from '@utils/const';
+
+import { flexBox } from '@styles/mixins';
 
 function Header() {
-  const { pathname } = useRouter();
+  const { headerTitle } = useSelector((state: { headerTitle: string }) => state);
 
   return (
     <Container>
       <Side>
         <HiOutlineMenuAlt1 />
-        <span>{headerTitle[pathname]}</span>
+        <span>{headerTitle}</span>
       </Side>
 
       <Side>
