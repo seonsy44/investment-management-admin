@@ -30,7 +30,7 @@ const Container = styled.div`
   padding: 0 20px;
   background-color: white;
   box-shadow: 0 1px 3px ${({ theme }) => theme.GRAY_DARK};
-  z-index: 2;
+  z-index: 3;
 `;
 
 const Side = styled.div`

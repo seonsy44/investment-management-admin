@@ -1,18 +1,27 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 
-import useHeaderTitleDispatch from '@hooks/useHeaderTitleDispatch';
+import { User } from '@type/user';
+import useUsers from '@hooks/useUsers';
+import useUserQueryState from '@hooks/useUserQueryState';
+import Pagenation from '@components/Accounts/Pagenation';
+import useUserQueryDispatch from '@hooks/useUserQueryDispatch';
+import Table from './Table';
 
-function Users() {
-  const dispatchTitle = useHeaderTitleDispatch();
+type Props = {
+  users: User[];
+};
 
-  useEffect(() => {
-    dispatchTitle('사용자 목록');
-  }, []);
+function Users({ users }: Props) {
+  const { page, limit } = useUserQueryState();
+  const { dispatchPage } = useUserQueryDispatch();
+  useUsers();
 
-  return <Container>Users</Container>;
+  return (
+    <>
+      <Table users={users} />
+      <Pagenation contents={users} page={page} limit={limit} dispatchPage={dispatchPage} />
+    </>
+  );
 }
 
 export default Users;
-
-const Container = styled.div``;

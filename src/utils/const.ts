@@ -90,7 +90,12 @@ export const accountStatus: Record<string, string> = {
   4: '해지',
 };
 
-export const accountActivity: Record<string, string> = {
+export const activity: Record<string, string> = {
   true: '활성',
   false: '비활성',
+};
+
+export const staff: Record<string, string> = {
+  true: 'O',
+  false: 'X',
 };

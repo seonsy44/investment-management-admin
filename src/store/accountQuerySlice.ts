@@ -17,7 +17,7 @@ const initialState: AccountQueryState = {
 };
 
 export const accountQuerySlice = createSlice({
-  name: 'accountQeury',
+  name: 'accountQuery',
   initialState,
   reducers: {
     setPage: (state, action: { payload: number }) => {

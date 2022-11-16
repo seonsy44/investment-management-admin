@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Account } from '@type/account';
-import useParseAccountData from '@hooks/useParseAccountData';
-import TableBodyRow from '@components/UI/TableBodyRow';
+import { User } from '@type/user';
+import useParseUserData from '@hooks/useParseUserData';
 import TableHeadRow from './TableHeadRow';
+import TableBodyRow from '../UI/TableBodyRow';
 
 type Props = {
-  accounts: Account[];
+  users: User[];
 };
 
-function Table({ accounts }: Props) {
+function Table({ users }: Props) {
   return (
     <Container>
       <TableHead>
@@ -20,9 +20,9 @@ function Table({ accounts }: Props) {
       </TableHead>
       <tbody>
         <Row>
-          {accounts.map((account) => {
-            const parsedAccount = useParseAccountData({ account });
-            return <TableBodyRow key={account.uuid} data={parsedAccount} />;
+          {users.map((user) => {
+            const parsedAccount = useParseUserData({ user });
+            return <TableBodyRow key={user.uuid} data={parsedAccount} />;
           })}
         </Row>
       </tbody>
@@ -42,11 +42,12 @@ const Container = styled.table`
 const TableHead = styled.thead`
   position: sticky;
   top: 0;
+  z-index: 2;
 `;
 
 const Row = styled.tr`
   display: grid;
-  grid-template-columns: 2fr 2fr 1.5fr 1.5fr 2fr 2fr 2fr 1.5fr 2fr;
+  grid-template-columns: 1.5fr 0.8fr 1.5fr 0.5fr 1fr 1.5fr 1fr 0.8fr 1fr 1fr 1fr;
   grid-gap: 1px;
   background-color: ${({ theme }) => theme.GRAY_DARK};
 

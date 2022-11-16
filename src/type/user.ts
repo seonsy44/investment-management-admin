@@ -13,4 +13,8 @@ export type User = {
   last_login: string;
   created_at: string;
   updated_at: string;
+  allow_marketing_push: boolean;
+  is_active: boolean;
+  is_staff: boolean;
+  account_count: number;
 };

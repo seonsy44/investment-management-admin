@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 
 import { Account } from '@type/account';
+import { User } from '@type/user';
 
 type Props = {
-  contents: Account[];
+  contents: Account[] | User[];
   page: number;
   limit: number;
   dispatchPage: (page: number) => void;

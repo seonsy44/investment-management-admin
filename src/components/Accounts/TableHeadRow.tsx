@@ -1,4 +1,4 @@
-import { accountActivity, accountStatus, brokers } from '@utils/const';
+import { activity, accountStatus, brokers } from '@utils/const';
 import { getSelectOptions } from '@utils/getSelectOptions';
 import useAccountQueryDispatch from '@hooks/useAccountQueryDispatch';
 import useAccountQueryState from '@hooks/useAccountQueryState';
@@ -11,7 +11,7 @@ function TableHeadRow() {
 
   const brokerOptions = getSelectOptions(brokers, '증권사(전체)');
   const accountStatusOptions = getSelectOptions(accountStatus, '운용상태(전체)');
-  const accountActivityOptions = getSelectOptions(accountActivity, '계좌상태(전체)');
+  const accountActivityOptions = getSelectOptions(activity, '계좌상태(전체)');
 
   return (
     <>
