@@ -6,6 +6,7 @@ import UserService from '@services/UserService';
 import { accountStatus, brokers } from '@utils/const';
 import { parseDate } from '@utils/parseDate';
 import { TEXT_RIGHT } from '@components/UI/BodyColumn';
+import { parseAccountNumber } from '@utils/parseAccountNumber';
 
 type Props = {
   account: Account;
@@ -31,7 +32,7 @@ function useParseAccountData({
   const parsedAccount = useMemo(
     () => [
       { key: 'broker_id', title: '증권사', content: brokers[brokerId] },
-      { key: 'number', title: '계좌번호', content: number, href: `/accounts/${uuid}` },
+      { key: 'number', title: '계좌번호', content: parseAccountNumber(number), href: `/accounts/${uuid}` },
       { key: 'user_id', title: '고객명', content: data?.name ?? '', href: `/users/${data?.uuid}` },
       { key: 'status', title: '운용상태', content: accountStatus[status] },
       { key: 'name', title: '계좌명', content: name },
