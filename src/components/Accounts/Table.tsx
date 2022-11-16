@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Account } from '@type/account';
-import useParseAccountData from '@hooks/useParseAccountData';
-import TableBodyRow from '@components/UI/TableBodyRow';
+import TableBodyRow from '@components/Accounts/TableBodyRow';
 import TableHeadRow from './TableHeadRow';
 
 type Props = {
@@ -20,10 +19,9 @@ function Table({ accounts }: Props) {
       </TableHead>
       <tbody>
         <Row>
-          {accounts.map((account) => {
-            const parsedAccount = useParseAccountData({ account });
-            return <TableBodyRow key={account.uuid} data={parsedAccount} />;
-          })}
+          {accounts.map((account) => (
+            <TableBodyRow key={account.uuid} account={account} />
+          ))}
         </Row>
       </tbody>
     </Container>
@@ -42,6 +40,7 @@ const Container = styled.table`
 const TableHead = styled.thead`
   position: sticky;
   top: 0;
+  z-index: 2;
 `;
 
 const Row = styled.tr`

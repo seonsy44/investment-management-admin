@@ -1,21 +1,16 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import useHeaderTitleDispatch from './useHeaderTitleDispatch';
-import useUserQueryState from './useUserQueryState';
+import useUserURL from './useUserURL';
 
 function useUsers() {
-  const { isActive, isStaff, page, limit } = useUserQueryState();
+  const userURL = useUserURL();
   const router = useRouter();
   const dispatchTitle = useHeaderTitleDispatch();
 
   useEffect(() => {
-    const queries = [`_page=${page}`, `_limit=${limit}`];
-
-    if (!(isActive === 'all')) queries.push(`is_active=${isActive}`);
-    if (!(isStaff === 'all')) queries.push(`is_staff=${isStaff}`);
-
-    router.push(`/users?${queries.join('&')}`);
-  }, [isActive, isStaff, page, limit]);
+    router.push(userURL);
+  }, [userURL]);
 
   useEffect(() => {
     dispatchTitle('사용자 목록');

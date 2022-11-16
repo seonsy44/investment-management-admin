@@ -1,23 +1,23 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import Link from 'next/link';
 import { IconType } from 'react-icons/lib';
 
 import { flexBox } from '@styles/mixins';
 import useSignout from '@hooks/useSignout';
+import React from 'react';
 
-type Props = { name: string; href: (string | null)[]; Icon: IconType };
-
-const indexPageidx = 0;
+type Props = { name: string; href: string | null; Icon: IconType };
 
 function SiderItem({ name, href, Icon }: Props) {
   const { pathname } = useRouter();
   const handleSignoutClick = useSignout();
+  const isSelected = pathname === '/' ? pathname === href : href?.includes(`/${pathname.split('/')[1]}`);
 
-  if (href[indexPageidx])
+  if (href)
     return (
-      <Container isSelected={href.includes(pathname)}>
-        <Link href={href[indexPageidx]}>
+      <Container isSelected={isSelected}>
+        <Link href={href}>
           <a>
             <Icon />
             <span>{name}</span>
@@ -36,7 +36,7 @@ function SiderItem({ name, href, Icon }: Props) {
   );
 }
 
-export default SiderItem;
+export default React.memo(SiderItem);
 
 const Container = styled.li<{ isSelected?: boolean }>`
   padding: 15px 20px;

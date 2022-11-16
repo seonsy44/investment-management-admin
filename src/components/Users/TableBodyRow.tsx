@@ -1,15 +1,18 @@
 import Link from 'next/link';
 
 import BodyColumn from '@components/UI/BodyColumn';
+import { User } from '@type/user';
+import useParseUserData from '@hooks/useParseUserData';
 
 type Props = {
-  data: Record<string, string | number | undefined>[];
+  user: User;
 };
 
-function TableBodyRow({ data }: Props) {
+function TableBodyRow({ user }: Props) {
+  const parsedUser = useParseUserData({ user });
   return (
     <>
-      {data.map((item) => {
+      {parsedUser.map((item) => {
         if (item.href && typeof item.href === 'string')
           return (
             <BodyColumn key={item.key} type="textBlue">

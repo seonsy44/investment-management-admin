@@ -2,9 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { User } from '@type/user';
-import useParseUserData from '@hooks/useParseUserData';
 import TableHeadRow from './TableHeadRow';
-import TableBodyRow from '../UI/TableBodyRow';
+import TableBodyRow from './TableBodyRow';
 
 type Props = {
   users: User[];
@@ -20,10 +19,9 @@ function Table({ users }: Props) {
       </TableHead>
       <tbody>
         <Row>
-          {users.map((user) => {
-            const parsedAccount = useParseUserData({ user });
-            return <TableBodyRow key={user.uuid} data={parsedAccount} />;
-          })}
+          {users.map((user) => (
+            <TableBodyRow key={user.uuid} user={user} />
+          ))}
         </Row>
       </tbody>
     </Container>
