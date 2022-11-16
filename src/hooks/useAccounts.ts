@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import useUpdateEffect from '@hooks/useUpdateEffect';
 import useAccountQueryState from '@hooks/useAccountQueryState';
 import useHeaderTitleDispatch from './useHeaderTitleDispatch';
 
@@ -10,7 +9,7 @@ function useAccounts() {
   const router = useRouter();
   const dispatchTitle = useHeaderTitleDispatch();
 
-  useUpdateEffect(() => {
+  useEffect(() => {
     const queries = [`_page=${page}`, `_limit=${limit}`];
 
     if (!(brokerId === 'all')) queries.push(`broker_id=${brokerId}`);

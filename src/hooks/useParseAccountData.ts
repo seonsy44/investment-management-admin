@@ -17,7 +17,6 @@ function useParseAccountData({
     assets,
     broker_id: brokerId,
     created_at: createdAt,
-    id,
     is_active: isActive,
     name,
     number,

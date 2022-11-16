@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { Account } from '@type/account';
 import Columns from './Columns';
@@ -39,26 +39,4 @@ const Row = styled.tr`
   &:first-child {
     border-bottom: 1px solid ${({ theme }) => theme.GRAY_DARK};
   }
-`;
-
-const Input = styled.input`
-  padding: 10px;
-  background-color: white;
-  border: 1px solid ${({ theme }) => theme.BLUE};
-  text-align: right;
-`;
-
-const Button = styled.button`
-  position: absolute;
-  right: 3px;
-  bottom: 3px;
-  padding: 3px;
-  border-radius: 3px;
-  border: 1px solid ${({ theme }) => theme.BLUE};
-  font-size: 10px;
-  color: ${({ theme }) => theme.BLUE};
-`;
-
-const ColumnStyle = css`
-  font-size: 15px;
 `;
