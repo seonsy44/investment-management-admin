@@ -5,6 +5,7 @@ export type Account = {
   broker_id: string;
   status: number;
   number: string;
+  user_name: string;
   name: string;
   assets: string;
   payments: string;
