@@ -25,7 +25,7 @@ export default Table;
 const Container = styled.table`
   position: relative;
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.GRAY_DARK};
+  border: 1px solid ${({ theme }) => theme.GRAY_BG};
   border-bottom: none;
 `;
 
@@ -34,9 +34,9 @@ const Row = styled.tr`
   grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr;
   grid-template-rows: 80px 80px 80px;
   grid-gap: 1px;
-  background-color: ${({ theme }) => theme.GRAY_DARK};
+  background-color: ${({ theme }) => theme.GRAY_BG};
 
   &:first-child {
-    border-bottom: 1px solid ${({ theme }) => theme.GRAY_DARK};
+    border-bottom: 1px solid ${({ theme }) => theme.GRAY_BG};
   }
 `;
