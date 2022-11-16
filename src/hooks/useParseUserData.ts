@@ -16,7 +16,11 @@ function useParseUserData({ user }: Props) {
       { key: 'name', title: '고객명', content: maskingName(user.name), href: `/users/${user.uuid}` },
       { key: 'account_count', title: '보유계좌수', content: user.account_count },
       { key: 'email', title: '이메일', content: user.email, type: TEXT_RIGHT },
-      { key: 'gender_origin', title: '성별', content: user.gender_origin === (1 || 3) ? '남' : '여' },
+      {
+        key: 'gender_origin',
+        title: '성별',
+        content: user.gender_origin === 1 || user.gender_origin === 3 ? '남' : '여',
+      },
       { key: 'birth_date', title: '생년월일', content: parseDate(user.birth_date), type: TEXT_RIGHT },
       { key: 'phone_number', title: '휴대폰번호', content: maskingPhoneNum(user.phone_number), type: TEXT_RIGHT },
       { key: 'last_login', title: '최근로그인', content: parseDate(user.last_login), type: TEXT_RIGHT },

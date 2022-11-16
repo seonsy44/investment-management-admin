@@ -5,7 +5,7 @@ import useAccountQueryState from '@hooks/useAccountQueryState';
 import SelectBox from '@components/UI/SelectBox';
 import HeadColumn from '@components/UI/HeadColumn';
 
-function TableHeadRow() {
+function TableHeadRow({ isSelectBox }: { isSelectBox: boolean }) {
   const { dispatchBrokerId, dispatchStatus, dispatchActivity } = useAccountQueryDispatch();
   const { brokerId, status, isActive } = useAccountQueryState();
 
@@ -16,18 +16,30 @@ function TableHeadRow() {
   return (
     <>
       <HeadColumn>
-        <SelectBox options={brokerOptions} handleSelectChange={dispatchBrokerId} defaultValue={brokerId} />
+        {isSelectBox ? (
+          <SelectBox options={brokerOptions} handleSelectChange={dispatchBrokerId} defaultValue={brokerId} />
+        ) : (
+          '증권사'
+        )}
       </HeadColumn>
       <HeadColumn>계좌번호</HeadColumn>
       <HeadColumn>고객명</HeadColumn>
       <HeadColumn>
-        <SelectBox options={accountStatusOptions} handleSelectChange={dispatchStatus} defaultValue={status} />
+        {isSelectBox ? (
+          <SelectBox options={accountStatusOptions} handleSelectChange={dispatchStatus} defaultValue={status} />
+        ) : (
+          '운용상태'
+        )}
       </HeadColumn>
       <HeadColumn>계좌명</HeadColumn>
       <HeadColumn>평가금액</HeadColumn>
       <HeadColumn>입금금액</HeadColumn>
       <HeadColumn>
-        <SelectBox options={accountActivityOptions} handleSelectChange={dispatchActivity} defaultValue={isActive} />
+        {isSelectBox ? (
+          <SelectBox options={accountActivityOptions} handleSelectChange={dispatchActivity} defaultValue={isActive} />
+        ) : (
+          '계좌상태'
+        )}
       </HeadColumn>
       <HeadColumn>계좌개설일</HeadColumn>
     </>

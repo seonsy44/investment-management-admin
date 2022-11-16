@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import AccountsView from '@components/Accounts';
 import { Account } from '@type/account';
 import { COOKIE_TOKEN_KEY } from '@repositories/CookieTokenRepository';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 type Props = {
   accounts: Account[];
@@ -21,11 +21,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   let res;
 
   if (urlArray && urlArray.length > 1) {
-    res = await axios.get<Account[], AxiosResponse<Account[]>>(`http://localhost:4000/accounts?${urlArray[1]}`, {
+    res = await axios.get<Account[]>(`http://localhost:4000/accounts?${urlArray[1]}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
   } else {
-    res = await axios.get<Account[], AxiosResponse<Account[]>>(`http://localhost:4000/accounts?_page=1&_limit=30`, {
+    res = await axios.get<Account[]>(`http://localhost:4000/accounts?_page=1&_limit=30`, {
       headers: { Authorization: `Bearer ${token}` },
     });
   }

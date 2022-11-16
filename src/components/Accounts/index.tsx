@@ -16,7 +16,7 @@ function Accounts({ accounts }: Props) {
 
   return (
     <>
-      <Table accounts={accounts} />
+      <Table accounts={accounts} isSelectBox />
       <Pagenation contents={accounts} page={page} limit={limit} dispatchPage={dispatchPage} />
     </>
   );

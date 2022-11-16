@@ -32,6 +32,7 @@ const Column = styled.td<{ customStyle?: FlattenInterpolation<ThemeProps<Default
 
 const ColumnTextRight = styled(Column)`
   ${flexBox('row', 'flex-end')};
+  text-align: right;
   ${({ customStyle }) => customStyle};
 `;
 

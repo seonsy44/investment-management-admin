@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
   const token = req.cookies[COOKIE_TOKEN_KEY];
   const id = params?.accountId;
 
-  const res = await axios.get(`http://localhost:4000/accounts/${id}`, {
+  const res = await axios.get<Account>(`http://localhost:4000/accounts/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 

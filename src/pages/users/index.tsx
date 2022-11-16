@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 import UsersView from '@components/Users';
 import { COOKIE_TOKEN_KEY } from '@repositories/CookieTokenRepository';
@@ -21,11 +21,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   let res;
 
   if (urlArray && urlArray.length > 1) {
-    res = await axios.get<User[], AxiosResponse<User[]>>(`http://localhost:4000/users?${urlArray[1]}`, {
+    res = await axios.get<User[]>(`http://localhost:4000/users?${urlArray[1]}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
   } else {
-    res = await axios.get<User[], AxiosResponse<User[]>>(`http://localhost:4000/users?_page=1&_limit=30`, {
+    res = await axios.get<User[]>(`http://localhost:4000/users?_page=1&_limit=30`, {
       headers: { Authorization: `Bearer ${token}` },
     });
   }

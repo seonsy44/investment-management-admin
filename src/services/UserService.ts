@@ -11,6 +11,11 @@ const UserService = {
     const res = await axios({ bearer: true }).get<User[]>(`/users?id=${id}`);
     return res.data[0];
   },
+
+  async patchUser(id: string, data: { name: string }) {
+    const res = await axios({ bearer: true }).patch<User>(`/users/${id}`, data);
+    return res.data;
+  },
 };
 
 export default UserService;

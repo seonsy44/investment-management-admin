@@ -7,14 +7,15 @@ import TableHeadRow from './TableHeadRow';
 
 type Props = {
   accounts: Account[];
+  isSelectBox: boolean;
 };
 
-function Table({ accounts }: Props) {
+function Table({ accounts, isSelectBox }: Props) {
   return (
     <Container>
       <TableHead>
         <Row>
-          <TableHeadRow />
+          <TableHeadRow isSelectBox={isSelectBox} />
         </Row>
       </TableHead>
       <tbody>
@@ -33,7 +34,7 @@ export default Table;
 const Container = styled.table`
   position: relative;
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.GRAY_DARK};
+  border: 1px solid ${({ theme }) => theme.GRAY_BG};
   border-bottom: none;
 `;
 
@@ -47,9 +48,9 @@ const Row = styled.tr`
   display: grid;
   grid-template-columns: 2fr 2fr 1.5fr 1.5fr 2fr 2fr 2fr 1.5fr 2fr;
   grid-gap: 1px;
-  background-color: ${({ theme }) => theme.GRAY_DARK};
+  background-color: ${({ theme }) => theme.GRAY_BG};
 
   &:first-child {
-    border-bottom: 1px solid ${({ theme }) => theme.GRAY_DARK};
+    border-bottom: 1px solid ${({ theme }) => theme.GRAY_BG};
   }
 `;
