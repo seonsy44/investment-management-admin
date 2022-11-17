@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import useHeaderTitleDispatch from '@hooks/useHeaderTitleDispatch';
 import { Account } from '@type/account';
+import Seo from '@components/Layout/Seo';
 import Table from './Table';
 
 type Props = {
@@ -18,6 +19,7 @@ function AccountDetail({ account }: Props) {
 
   return (
     <>
+      <Seo title="D. PREFACE | 계좌 상세" />
       <Title>계좌 정보</Title>
       <Table account={account} />
     </>

@@ -5,6 +5,7 @@ import useUsers from '@hooks/useUsers';
 import useUserQueryState from '@hooks/useUserQueryState';
 import Pagenation from '@components/Accounts/Pagenation';
 import useUserQueryDispatch from '@hooks/useUserQueryDispatch';
+import Seo from '@components/Layout/Seo';
 import Table from './Table';
 
 type Props = {
@@ -18,6 +19,7 @@ function Users({ users }: Props) {
 
   return (
     <>
+      <Seo title="D. PREFACE | 사용자 목록" />
       <Table users={users} />
       <Pagenation contents={users} page={page} limit={limit} dispatchPage={dispatchPage} />
     </>

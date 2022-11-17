@@ -8,6 +8,7 @@ import useDeleteModal from '@hooks/useDeleteModal';
 import Table from '@components/Accounts/Table';
 import { flexBox } from '@styles/mixins';
 import UserService from '@services/UserService';
+import Seo from '@components/Layout/Seo';
 import UserInfoTable from './UserInfoTable';
 import DeleteModal from './DeleteModal';
 
@@ -28,6 +29,7 @@ function UserDetail({ user, accounts }: Props) {
   }, []);
   return (
     <>
+      <Seo title={`D. PREFACE | ${user.name}`} />
       {isOpenModal && <DeleteModal userId={user.uuid} onCancelClick={handleCancelModal} onDeleteClick={handleDelete} />}
       <Title>사용자 정보</Title>
       <UserInfoTable user={user} />
