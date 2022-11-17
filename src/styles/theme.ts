@@ -7,4 +7,5 @@ export const colors = {
   BLUE: '#458FF7',
   RED: '#EC5B56',
   YELLOW: '#EEB041',
+  YELLOW_BG: '#FEFBE8',
 } as const;

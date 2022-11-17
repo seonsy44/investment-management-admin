@@ -15,5 +15,6 @@ declare module 'styled-components' {
     BLUE: colors.BLUE;
     RED: colors.RED;
     YELLOW: colors.YELLOW;
+    YELLOW_BG: colors.YELLOW_BG;
   }
 }

@@ -2,7 +2,7 @@ export const COOKIE_TOKEN_KEY = 'TOKEN';
 
 const CookieToken = {
   set(token: string) {
-    document.cookie = `${COOKIE_TOKEN_KEY}=${token}`;
+    document.cookie = `${COOKIE_TOKEN_KEY}=${token};`;
   },
 
   get() {

@@ -7,6 +7,7 @@ import Input from '@components/Signin/Input';
 import FormTitle from '@components/Signin/FormTitle';
 import useSignin from '@hooks/useSignin';
 import { flexBox } from '@styles/mixins';
+import ReLoginModal from './ReLoginModal';
 
 function Signin() {
   const { email, password, isFormValid, handleEmailChange, handlePasswordChange, handleSubmit } = useSignin();
@@ -15,6 +16,7 @@ function Signin() {
     <Container>
       <Title>PREFACE</Title>
       <SubContainer>
+        <ReLoginModal />
         <FormTitle Icon={HiOutlineUser}>로그인</FormTitle>
         <Form onSubmit={handleSubmit}>
           <Input value={email} onChange={handleEmailChange} type="text" placeholder="아이디를 입력하세요" />
@@ -45,6 +47,7 @@ const Title = styled.h1`
 `;
 
 const SubContainer = styled.div`
+  position: relative;
   width: 400px;
   background-color: white;
   border-radius: 5px;
