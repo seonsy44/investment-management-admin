@@ -18,18 +18,19 @@ function Layout({ children }: Props) {
     contentRef.current?.scrollTo(0, 0);
   }, [asPath]);
 
-  if (pathname === '/signin') return <>{children}</>;
+  if (pathname === '/' || pathname.startsWith('/accounts') || pathname.startsWith('/users'))
+    return (
+      <Container>
+        <Sider />
+        <Header />
+        <Content ref={contentRef}>
+          <ChildrenContainer>{children}</ChildrenContainer>
+          <Footer />
+        </Content>
+      </Container>
+    );
 
-  return (
-    <Container>
-      <Sider />
-      <Header />
-      <Content ref={contentRef}>
-        <ChildrenContainer>{children}</ChildrenContainer>
-        <Footer />
-      </Content>
-    </Container>
-  );
+  return <>{children}</>;
 }
 
 export default Layout;

@@ -12,7 +12,7 @@ type Props = { name: string; href: string | null; Icon: IconType };
 function SiderItem({ name, href, Icon }: Props) {
   const { pathname } = useRouter();
   const handleSignoutClick = useSignout();
-  const isSelected = pathname === '/' ? pathname === href : href?.includes(`/${pathname.split('/')[1]}`);
+  const isSelected = pathname === '/' ? pathname === href : href?.startsWith(`/${pathname.split('/')[1]}`);
 
   if (href)
     return (

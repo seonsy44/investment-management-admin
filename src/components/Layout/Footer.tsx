@@ -11,5 +11,5 @@ const Container = styled.div`
   ${flexBox()}
   width: 100%;
   height: 100px;
-  background-color: ${({ theme }) => theme.GRAY_DARK};
+  background-color: ${({ theme }) => theme.GRAY_LIGHT};
 `;
