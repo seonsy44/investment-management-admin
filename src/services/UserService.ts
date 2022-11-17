@@ -16,6 +16,11 @@ const UserService = {
     const res = await axios({ bearer: true }).patch<User>(`/users/${id}`, data);
     return res.data;
   },
+
+  async deleteUser(id: string) {
+    const res = await axios({ bearer: true }).delete(`/users/${id}`);
+    return res.data;
+  },
 };
 
 export default UserService;
