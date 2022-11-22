@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
   let res;
 
   try {
-    res = await axios.get<Account>(`http://localhost:4000/accounts/${id}`, {
+    res = await axios.get<Account>(`${process.env.NEXT_PUBLIC_SERVER_URL}/accounts/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
   } catch (error) {

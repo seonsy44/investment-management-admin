@@ -26,11 +26,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
   try {
     if (urlArray && urlArray.length > 1) {
-      accountsRes = await axios.get<Account[]>(`http://localhost:4000/accounts?${urlArray[1]}`, {
+      accountsRes = await axios.get<Account[]>(`${process.env.NEXT_PUBLIC_SERVER_URL}/accounts?${urlArray[1]}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
     } else {
-      accountsRes = await axios.get<Account[]>(`http://localhost:4000/accounts?_page=1&_limit=30`, {
+      accountsRes = await axios.get<Account[]>(`${process.env.NEXT_PUBLIC_SERVER_URL}/accounts?_page=1&_limit=30`, {
         headers: { Authorization: `Bearer ${token}` },
       });
     }

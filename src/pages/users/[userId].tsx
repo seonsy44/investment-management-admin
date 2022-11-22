@@ -28,11 +28,11 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
   let accountsRes;
 
   try {
-    userRes = await axios.get<User>(`http://localhost:4000/users/${id}`, {
+    userRes = await axios.get<User>(`${process.env.NEXT_PUBLIC_SERVER_URL}/users/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    accountsRes = await axios.get<User>(`http://localhost:4000/accounts?user_id=${userRes.data.uuid}`, {
+    accountsRes = await axios.get<User>(`${process.env.NEXT_PUBLIC_SERVER_URL}/accounts?user_id=${userRes.data.uuid}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
   } catch (error) {
