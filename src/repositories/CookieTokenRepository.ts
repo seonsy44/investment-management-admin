@@ -1,4 +1,5 @@
 export const COOKIE_TOKEN_KEY = 'TOKEN';
+export const TOKEN_EXPIRED = 'EXPIRED';
 
 const CookieToken = {
   set(token: string) {

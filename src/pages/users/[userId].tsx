@@ -1,27 +1,23 @@
 import { GetServerSideProps } from 'next';
 import axios, { AxiosError } from 'axios';
 
-import { COOKIE_TOKEN_KEY } from '@repositories/CookieTokenRepository';
+import { COOKIE_TOKEN_KEY, TOKEN_EXPIRED } from '@repositories/CookieTokenRepository';
 import { User } from '@type/user';
 import { Account } from '@type/account';
 import UserDetailView from '@components/UserDetail';
-import useExpiredToken from '@hooks/useExpiredToken';
 
 type Props = {
   user: User;
   accounts: Account[];
-  isExpired?: boolean;
 };
 
-function UserDetail({ user, accounts, isExpired }: Props) {
-  useExpiredToken(isExpired);
-
+function UserDetail({ user, accounts }: Props) {
   return <UserDetailView user={user} accounts={accounts} />;
 }
 
 export default UserDetail;
 
-export const getServerSideProps: GetServerSideProps = async ({ params, req }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params, req, res }) => {
   const token = req.cookies[COOKIE_TOKEN_KEY];
   const id = params?.userId;
   let userRes;
@@ -37,12 +33,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
     });
   } catch (error) {
     if (error instanceof AxiosError && error.response?.status === 401) {
+      res.setHeader('Set-Cookie', [`${COOKIE_TOKEN_KEY}=${TOKEN_EXPIRED}; Path=/`]);
       return {
-        props: {
-          user: {},
-          accounts: [],
-          isExpired: true,
+        redirect: {
+          destination: '/signin',
         },
+        props: {},
       };
     }
   }

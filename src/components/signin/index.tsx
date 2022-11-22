@@ -9,14 +9,18 @@ import FormTitle from './FormTitle';
 import Input from './Input';
 import Button from './Button';
 
-function Signin() {
+type Props = {
+  isExpired: boolean;
+};
+
+function Signin({ isExpired }: Props) {
   const { email, password, isFormValid, handleEmailChange, handlePasswordChange, handleSubmit } = useSignin();
 
   return (
     <Container>
       <Title>PREFACE</Title>
       <SubContainer>
-        <AlertModal isExpired={false} />
+        <AlertModal isExpired={isExpired} />
         <FormTitle Icon={HiOutlineUser}>로그인</FormTitle>
         <Form onSubmit={handleSubmit}>
           <Input value={email} onChange={handleEmailChange} type="text" placeholder="아이디를 입력하세요" />

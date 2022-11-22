@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { COOKIE_TOKEN_KEY } from '@repositories/CookieTokenRepository';
+import { COOKIE_TOKEN_KEY, TOKEN_EXPIRED } from '@repositories/CookieTokenRepository';
 
 export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith('/signin')) {
-    if (request.cookies.get(COOKIE_TOKEN_KEY)) {
+    if (request.cookies.get(COOKIE_TOKEN_KEY) && !(request.cookies.get(COOKIE_TOKEN_KEY) === TOKEN_EXPIRED)) {
       return NextResponse.redirect(`${process.env.NEXT_PUBLIC_CLIENT_URL}/`);
     }
   }
