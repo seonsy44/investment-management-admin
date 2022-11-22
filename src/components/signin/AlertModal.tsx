@@ -1,34 +1,43 @@
-import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { HiInformationCircle, HiOutlineX } from 'react-icons/hi';
 
 import { flexBox, positionCenterX } from '@styles/mixins';
-import { ReLoginModalState, unshowModal } from '@store/reLoginModalSlice';
+import { alertModalState, showModal, unshowModal } from '@store/alertModalSlice';
+import { useEffect } from 'react';
 
-function ReLoginModal() {
-  const { isShowReLoginModal } = useSelector((state: { isShowReLoginModal: ReLoginModalState }) => state);
+type Props = {
+  isExpired: boolean;
+};
+
+function alertModal({ isExpired }: Props) {
+  const { alertModal } = useSelector((state: { alertModal: alertModalState }) => state);
   const dispatch = useDispatch();
 
   const handleClick = () => dispatch(unshowModal());
 
-  if (!isShowReLoginModal) return null;
+  useEffect(() => {
+    if (isExpired) dispatch(showModal('세션이 만료되어 재로그인이 필요합니다.'));
+  }, [isExpired]);
+
+  if (!alertModal.isOpen) return null;
 
   return (
     <Container>
       <HiInformationCircle />
-      세션이 만료되어 재로그인이 필요합니다.
+      {alertModal.content}
       <HiOutlineX onClick={handleClick} />
     </Container>
   );
 }
 
-export default ReLoginModal;
+export default alertModal;
 
 const Container = styled.div`
   ${positionCenterX()}
   top: -60px;
   ${flexBox()}
-  width: 300px;
+  width: 320px;
   height: 40px;
   background-color: ${({ theme }) => theme.YELLOW_BG};
   border: 1px solid ${({ theme }) => theme.YELLOW};

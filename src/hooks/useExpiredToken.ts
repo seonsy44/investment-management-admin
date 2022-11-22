@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import CookieToken from '@repositories/CookieTokenRepository';
 import { useDispatch } from 'react-redux';
-import { showModal } from '@store/reLoginModalSlice';
+import { showModal } from '@store/alertModalSlice';
 
 function useExpiredToken(isExpired: boolean | undefined) {
   const router = useRouter();

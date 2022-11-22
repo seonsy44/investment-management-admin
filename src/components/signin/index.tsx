@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { HiOutlineUser, HiLogin } from 'react-icons/hi';
 
-import Button from '@components/Signin/Button';
-import Input from '@components/Signin/Input';
-import FormTitle from '@components/Signin/FormTitle';
 import useSignin from '@hooks/useSignin';
 import { flexBox } from '@styles/mixins';
-import ReLoginModal from './ReLoginModal';
+import AlertModal from './AlertModal';
+import FormTitle from './FormTitle';
+import Input from './Input';
+import Button from './Button';
 
 function Signin() {
   const { email, password, isFormValid, handleEmailChange, handlePasswordChange, handleSubmit } = useSignin();
@@ -16,7 +16,7 @@ function Signin() {
     <Container>
       <Title>PREFACE</Title>
       <SubContainer>
-        <ReLoginModal />
+        <AlertModal isExpired={false} />
         <FormTitle Icon={HiOutlineUser}>로그인</FormTitle>
         <Form onSubmit={handleSubmit}>
           <Input value={email} onChange={handleEmailChange} type="text" placeholder="아이디를 입력하세요" />
