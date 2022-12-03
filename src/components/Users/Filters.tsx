@@ -25,5 +25,4 @@ export default Filters;
 
 const Container = styled.div`
   ${flexBox()}
-  margin-bottom: 10px;
 `;

@@ -37,4 +37,5 @@ export default Accounts;
 
 const FilterAndSearch = styled.div`
   ${flexBox('row', 'space-between')}
+  margin-bottom: 10px;
 `;
