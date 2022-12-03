@@ -7,15 +7,14 @@ import TableHeadRow from './TableHeadRow';
 
 type Props = {
   accounts: Account[];
-  isSelectBox: boolean;
 };
 
-function Table({ accounts, isSelectBox }: Props) {
+function Table({ accounts }: Props) {
   return (
     <Container>
       <TableHead>
         <Row>
-          <TableHeadRow isSelectBox={isSelectBox} />
+          <TableHeadRow />
         </Row>
       </TableHead>
       <tbody>

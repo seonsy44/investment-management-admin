@@ -5,6 +5,7 @@ export type UserQueryState = {
   limit: number;
   is_active: string | null;
   is_staff: string | null;
+  search: string | null;
 };
 
 const initialState: UserQueryState = {
@@ -12,6 +13,7 @@ const initialState: UserQueryState = {
   limit: 30,
   is_active: null,
   is_staff: null,
+  search: null,
 };
 
 export const userQuerySlice = createSlice({
@@ -31,7 +33,12 @@ export const userQuerySlice = createSlice({
       else state.is_staff = action.payload;
       state.page = 1;
     },
+    setSearch: (state, action: { payload: string }) => {
+      if (action.payload === '') state.search = null;
+      else state.search = action.payload;
+      state.page = 1;
+    },
   },
 });
 
-export const { setPage, setIsActive, setIsStaff } = userQuerySlice.actions;
+export const { setPage, setIsActive, setIsStaff, setSearch } = userQuerySlice.actions;

@@ -8,9 +8,9 @@ function useAccountQueryState() {
   const brokerId = accountQuery.broker_id ?? 'all';
   const status = accountQuery.status ?? 'all';
   const isActive = accountQuery.is_active ?? 'all';
-  const { page, limit } = accountQuery;
+  const { page, limit, search } = accountQuery;
 
-  return { brokerId, status, isActive, page, limit };
+  return { brokerId, status, isActive, page, limit, search };
 }
 
 export default useAccountQueryState;

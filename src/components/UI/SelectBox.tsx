@@ -25,13 +25,21 @@ function SelectBox({ options, handleSelectChange, defaultValue }: Props) {
 export default SelectBox;
 
 const Select = styled.select`
-  width: 100%;
-  height: 100%;
+  width: 140px;
+  height: 30px;
+  padding: 5px;10px;
+  border: 1px solid ${({ theme }) => theme.GRAY_DARK};
+  background-color: white;
+  font-size: 13px;
   text-align: center;
   cursor: pointer;
 
   &:focus {
     outline: none;
+  }
+
+  & + select {
+    margin-left: 10px;
   }
 `;
 

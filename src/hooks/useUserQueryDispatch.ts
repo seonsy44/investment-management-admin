@@ -1,4 +1,4 @@
-import { setIsActive, setIsStaff, setPage } from '@store/userQuerySlice';
+import { setIsActive, setIsStaff, setPage, setSearch } from '@store/userQuerySlice';
 import { useDispatch } from 'react-redux';
 
 function useUserQueryDispatch() {
@@ -16,7 +16,11 @@ function useUserQueryDispatch() {
     dispatch(setPage(page));
   };
 
-  return { dispatchIsActive, dispatchIsStaff, dispatchPage };
+  const dispatchSearch = (search: string) => {
+    dispatch(setSearch(search.trim()));
+  };
+
+  return { dispatchIsActive, dispatchIsStaff, dispatchPage, dispatchSearch };
 }
 
 export default useUserQueryDispatch;

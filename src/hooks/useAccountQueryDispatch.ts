@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { setBrokerId, setIsActive, setPage, setStatus } from '@store/accountQuerySlice';
+import { setBrokerId, setIsActive, setPage, setSearch, setStatus } from '@store/accountQuerySlice';
 
 function useAccountQueryDispatch() {
   const dispatch = useDispatch();
@@ -20,7 +20,11 @@ function useAccountQueryDispatch() {
     dispatch(setPage(page));
   };
 
-  return { dispatchBrokerId, dispatchStatus, dispatchActivity, dispatchPage };
+  const dispatchSearch = (search: string) => {
+    dispatch(setSearch(search.trim()));
+  };
+
+  return { dispatchBrokerId, dispatchStatus, dispatchActivity, dispatchPage, dispatchSearch };
 }
 
 export default useAccountQueryDispatch;
